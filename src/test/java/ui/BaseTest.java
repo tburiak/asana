@@ -17,7 +17,8 @@ public abstract class BaseTest {
     @BeforeAll
     public void createPlaywrightBrowserInstances() {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = playwright.chromium()
+                .launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     @BeforeEach

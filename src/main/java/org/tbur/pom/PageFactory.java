@@ -1,14 +1,11 @@
-package skymind.automation.factory;
+package org.tbur.pom;
 
 import com.microsoft.playwright.Page;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import skymind.automation.pom.page.BasePage;
 
-@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class BasePageFactory {
+public final class PageFactory {
 
     public static <T extends BasePage> T createInstance(final Page page, final Class<T> clazz) {
         try {
@@ -17,9 +14,7 @@ public final class BasePageFactory {
             instance.initElements();
             return clazz.cast(instance);
         } catch (Exception e) {
-            log.error("BasePageFactory::createInstance", e);
+            throw new IllegalArgumentException("Page class instantiation failed.");
         }
-
-        throw new IllegalArgumentException("Page class instantiation failed.");
     }
 }
