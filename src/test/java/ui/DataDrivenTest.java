@@ -13,13 +13,12 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class DataDrivenTest extends BaseTest {
 
-    private static final String testDataFilePath = "src/test/resources/testdata.json";
+    private static final String TEST_DATA_FILEPATH = "src/test/resources/testdata.json";
 
     @TestFactory
     Stream<DynamicTest> testCases() {
-        List<TestDataLoader.TestData> testData = TestDataLoader.loadTestData(testDataFilePath);
+        List<TestDataLoader.TestData> testData = TestDataLoader.loadTestData(TEST_DATA_FILEPATH);
         at(LoginPage.class).login();
-
         return testData.stream().map(data ->
                 dynamicTest(data.getTestCaseName(), () ->
                         at(MainPage.class)
